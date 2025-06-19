@@ -1,6 +1,8 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,11 +24,34 @@ public class Main {
         System.out.println(checkEmail("oleg03gmail.com"));
         System.out.println(checkEmail("oleg@gmailcom"));
         System.out.println(checkEmail("asdsdffAQSS@yandex.ru"));
+
+        ArrayList<User> users = new ArrayList<>();
+
+        User user1 = new User("Oleg");
+        user1.addTicket(new Ticket("123321"));
+        user1.addTicket(new Ticket("222333"));
+
+        User user2 = new User("Pavel");
+        user2.addTicket(new Ticket("111222"));
+        user2.addTicket(new Ticket("456654"));
+
+        users.add(user1);
+        users.add(user2);
+
+        for (User user : users) {
+            for (Ticket ticket : user.getTickets()) {
+                if (ticket.isLucky()) {
+                    System.out.println("Билет счастливый");
+                } else {
+                    System.out.println("Билет не подходит");
+                }
+            }
+        }
     }
 
     //Задача 1: Метод проверяющий является ли число четным
     public static Boolean isNumberEven(int number) {
-       return (number % 2 == 0);
+        return (number % 2 == 0);
     }
 
     //Задача 2: Метод, проверяющий, что введённое имя не больше 20 символов.
@@ -53,7 +78,7 @@ public class Main {
 
     //Задача 4: Метод, который проверяет, начинается ли строка с большой буквы.
     public static boolean checkString(String str) {
-        return  (Character.isUpperCase(str.charAt(0)));
+        return (Character.isUpperCase(str.charAt(0)));
     }
 
     //Задача 5: Метод, который принимает email и проверяет, есть ли в нём @ и точка после него

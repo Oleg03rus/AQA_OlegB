@@ -7,9 +7,9 @@ public class Ticket {
         this.value = value;
     }
 
-    public boolean isLucky(String ticket) {
-        String firstPart = this.value.substring(0, 3);
-        String secondPart = this.value.substring(3);
+    public boolean isLucky() {
+        String firstPart = value.substring(0, 3);
+        String secondPart = value.substring(3);
 
         char[] firstPartCharArray = firstPart.toCharArray();
         char[] secondPartCharArray = secondPart.toCharArray();
