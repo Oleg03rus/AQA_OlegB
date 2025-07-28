@@ -25,7 +25,7 @@ public class Main {
         System.out.println(checkEmail("oleg@gmailcom"));
         System.out.println(checkEmail("asdsdffAQSS@yandex.ru"));
 
-        ArrayList<User> users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
 
         User user1 = new User("Oleg");
         user1.addTicket(new Ticket("123321"));
@@ -47,6 +47,8 @@ public class Main {
                 }
             }
         }
+
+        System.out.println(EmailList.sortedEmailList(EmailList.emailList));
     }
 
     //Задача 1: Метод проверяющий является ли число четным
@@ -70,8 +72,7 @@ public class Main {
         int index = array.length - 1;
 
         for (int i = 0; i < array.length; i++) {
-            newReverseArray[index] = array[i];
-            index--;
+            newReverseArray[index--] = array[i];
         }
         return newReverseArray;
     }

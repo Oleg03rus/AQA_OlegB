@@ -1,9 +1,8 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class User {
+public class User implements Authoriable{
     private String name;
     private ArrayList<Ticket> tickets;
 
@@ -18,5 +17,10 @@ public class User {
 
     public ArrayList<Ticket> getTickets(){
         return tickets;
+    }
+
+    @Override
+    public void login() {
+        System.out.println("Пользователь {id} авторизовался");
     }
 }
