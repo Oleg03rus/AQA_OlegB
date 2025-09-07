@@ -48,7 +48,16 @@ public class Main {
             }
         }
 
+        //Задача на сортировку уникальных доменов, e-mail адресов
         System.out.println(EmailList.sortedEmailList(EmailList.emailList));
+
+        List<Employee> employees = List.of(
+                new Employee("Alice", List.of("Java", "Selenium", "Git")),
+                new Employee("Bob", List.of("Java", "Docker")),
+                new Employee("Eve", List.of("Python", "Selenium", "Git"))
+        );
+
+        
     }
 
     //Задача 1: Метод проверяющий является ли число четным
