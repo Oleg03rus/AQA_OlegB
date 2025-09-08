@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,7 +58,11 @@ public class Main {
                 new Employee("Eve", List.of("Python", "Selenium", "Git"))
         );
 
-        
+        System.out.println(employees.stream()
+                .flatMap(employee -> employee.getSkills().stream())
+                .distinct()
+                .sorted()
+                .toList());
     }
 
     //Задача 1: Метод проверяющий является ли число четным
