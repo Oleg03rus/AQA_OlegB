@@ -1,17 +1,105 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println(isNumberEven(2));
+        System.out.println(isNumberEven(3));
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println(checkNumberOfCharacters());
+
+        int[] array = {2, 3, 4, 5};
+        System.out.println(Arrays.toString(reverseArray(array)));
+
+        System.out.println(checkString("Hello"));
+        System.out.println(checkString("world"));
+
+        System.out.println(checkEmail("oleg03@gmail.com"));
+        System.out.println(checkEmail("oleg03gmail.com"));
+        System.out.println(checkEmail("oleg@gmailcom"));
+        System.out.println(checkEmail("asdsdffAQSS@yandex.ru"));
+
+        List<User> users = new ArrayList<>();
+
+        User user1 = new User("Oleg");
+        user1.addTicket(new Ticket("123321"));
+        user1.addTicket(new Ticket("222333"));
+
+        User user2 = new User("Pavel");
+        user2.addTicket(new Ticket("111222"));
+        user2.addTicket(new Ticket("456654"));
+
+        users.add(user1);
+        users.add(user2);
+
+        for (User user : users) {
+            for (Ticket ticket : user.getTickets()) {
+                if (ticket.isLucky()) {
+                    System.out.println("Билет счастливый");
+                } else {
+                    System.out.println("Билет не подходит");
+                }
+            }
         }
+
+        //Задача на сортировку уникальных доменов, e-mail адресов
+        System.out.println(EmailList.sortedEmailList(EmailList.emailList));
+
+        List<Employee> employees = List.of(
+                new Employee("Alice", List.of("Java", "Selenium", "Git")),
+                new Employee("Bob", List.of("Java", "Docker")),
+                new Employee("Eve", List.of("Python", "Selenium", "Git"))
+        );
+
+        System.out.println(employees.stream()
+                .flatMap(employee -> employee.getSkills().stream())
+                .distinct()
+                .sorted()
+                .toList());
+    }
+
+    //Задача 1: Метод проверяющий является ли число четным
+    public static Boolean isNumberEven(int number) {
+        return (number % 2 == 0);
+    }
+
+    //Задача 2: Метод, проверяющий, что введённое имя не больше 20 символов.
+    public static boolean checkNumberOfCharacters() {
+        System.out.println("Введите имя для проверки количества символов: ");
+
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+
+        return (name.length() <= 20);
+    }
+
+    //Задача 3: Метод, который принимает массив и возвращает новый массив в обратном порядке.
+    public static int[] reverseArray(int[] array) {
+        int[] newReverseArray = new int[array.length];
+        int index = array.length - 1;
+
+        for (int i = 0; i < array.length; i++) {
+            newReverseArray[index--] = array[i];
+        }
+        return newReverseArray;
+    }
+
+    //Задача 4: Метод, который проверяет, начинается ли строка с большой буквы.
+    public static boolean checkString(String str) {
+        return (Character.isUpperCase(str.charAt(0)));
+    }
+
+    //Задача 5: Метод, который принимает email и проверяет, есть ли в нём @ и точка после него
+    public static boolean checkEmail(String email) {
+        Pattern pattern = Pattern.compile("(\\w+[\\.-]?\\w+)+@(\\w+[\\.]{1}[a-z]{2,4})");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

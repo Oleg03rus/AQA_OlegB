@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/profile/[0-9]+"
+  },
+  "response": {
+    "status": 404,
+    "fixedDelayMilliseconds": 3000,
+    "headers": {
+      "Content-type": "application/json"
+    }
+  }
+}
